@@ -1,0 +1,25 @@
+//***********************************************************************************************
+// Written by Cenna Doornbos.
+//
+// This text file creates the Gel Analysis Tool bar in FIJI and
+// should be placed in the folder: "...\Fiji.app\macros\toolsets".
+//
+// Select the Gel Analysis Tool bar by clicking the double arrow at the right of the FIJI toolbar.
+//***********************************************************************************************
+
+
+
+// Run the preprocess macro
+ macro "Gel Preprocess Tool - R11ee L3454 L7494 L3858 Lb8d8 L3b5b L7b9b Lbbdb" {
+        runMacro("PreprocessGelImage.ijm");
+   }
+
+//Run the select lanes macro
+ macro "Select Lanes Tool - R224c R624c Ra24c " {
+        runMacro("SelectLanes.ijm");
+   }
+
+//
+  macro "Analyze Peaks Tool - L0f4f L4f64 L6472 L72a4 La4bf Lbfgf Caaa H5g858393ag5g " {
+        runMacro("AnalyzePeaks.ijm")
+   }
