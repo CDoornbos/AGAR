@@ -61,7 +61,6 @@ if (choice=="No") {
 	Dialog.addMessage("Select part of the image background for correction and press OK.");
 	Dialog.show();
 	getStatistics(area, mean, min, max, std, histogram);
-	print(mean, min, max);
 	run("Select All");
 	setMinAndMax(0, max);
 }
