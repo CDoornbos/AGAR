@@ -8,6 +8,9 @@
 
 
 
+//check version ImageJ
+requires("1.53q")
+
 //check if an area is selected before running the macro
 if (getValue("selection.size")==0) {
 	exit("error: Make sure to tightly select the part of the gel where the lanes are before running the tool.");
@@ -18,9 +21,10 @@ lanes_n = getNumber("Number of lanes", 2);
 
 // crop the selected area and select the lanes
 window = getInfo("window.title");
+run("Duplicate...", "title=lanes");
 run("Duplicate...", "title=analysis");
-selectWindow(window);
-run("Crop");
+selectWindow("lanes");
+//run("Crop");
 run("Select All");
 SelectLanes(lanes_n);
 
@@ -31,10 +35,12 @@ Dialog.show();
 
 choice = Dialog.getRadioButton();
 if (choice=="No") {
-	Dialog.createNonBlocking("Image analysis");
-	Dialog.addMessage("Reselect the image so that the gel lanes can be selected correctly and run the Select Lanes tool again.");
-	Dialog.show();
 	run("Reset");
+	run("Select None");
+	close("analysis");
+	close("lanes");
+	setTool("rectangle");
+	exit("Reselect the image so that the gel lanes can be selected correctly and run the Select Lanes tool again.");
 }
 
 // measure the bands per lane
@@ -43,8 +49,7 @@ selectWindow("analysis");
 run("Duplicate...", "title=duplicate");
 setAutoThreshold("MaxEntropy dark no-reset");
 run("Convert to Mask");
-run("Erode");
-run("Analyze Particles...", "display clear add composite");
+run("Analyze Particles...", "size=0-Infinity circularity=0.00-1.00 display clear add composite");
 selectWindow("analysis");
 roiManager("Select", 0);
 setBackgroundColor(255, 255, 255);
@@ -54,10 +59,13 @@ run("Select All");
 SelectLanes(lanes_n);
 run("Plot Lanes");
 	//close all remaining analysis windows
+close(window);
 close("ROI Manager");
 close("Results");
 close("duplicate");
 close("analysis");
+selectWindow("lanes");
+rename(window);
 
 
 

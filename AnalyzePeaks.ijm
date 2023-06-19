@@ -8,8 +8,11 @@
 
 
 
+//check version ImageJ
+requires("1.53q")
 
 // get the control peak areas
+setTool("wand");
 Dialog.createNonBlocking("Image preparation");
 Dialog.addMessage("Use the Wand tool to select the control peak from each lane from " +
 	"top to bottom, then click OK.");
@@ -37,6 +40,7 @@ Table.setColumn("Control ratio", ratios);
 bands_n = getNumber("How many bands of the protein(s) or gene(s) of interest are there per lane.", 1);
 
 for (i = 0;i < bands_n; i++) {
+	setTool("wand");
 	set = i+1;
 	Dialog.createNonBlocking("Image preparation");
 	Dialog.addMessage("Use the Wand tool to select sample peak " + set +
@@ -60,7 +64,7 @@ for (i = 0;i < bands_n; i++) {
 		ratio = (band_j/band_1)/ratio_con;
 		ratios[j] = ratio;
 	}
-	colname = "Normalized protein/gene " + set + " ratio";
+	colname = "Normalized ratio " + set;
 	Table.setColumn(colname, ratios);
 }
 
