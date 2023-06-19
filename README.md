@@ -10,6 +10,7 @@ Setting up AGAR is very simple:
 4. Place the *PreprocessGelImage.ijm*, *SelectLanes.ijm*, and *AnalyzePeaks.ijm* files in your **'...\Fiji.app\macros'** folder.
 5. Start FIJI by running the *.exe* from the folder you downloaded it to in **step 1**.
 6. Select the **Gel Analysis Toolbar** by clicking the double arrow on the right.
+![Gel Analysis Toolbar](Gel_Analysis_Toolbar.png)
 7. Superb! You're all set to start analyzing your gels.
 
 ## How to use AGAR
